@@ -68,11 +68,14 @@ const OneTapComponent = () => {
                     // with chrome's removal of third-party cookiesm, we need to use FedCM instead (https://developers.google.com/identity/gsi/web/guides/fedcm-migration)
                     use_fedcm_for_prompt: true,
                 })
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-expect-error
                 google.accounts.id.prompt() // Display the One Tap UI
             })
         }
         initializeGoogleOneTap()
         return () => window.removeEventListener('load', initializeGoogleOneTap)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (
