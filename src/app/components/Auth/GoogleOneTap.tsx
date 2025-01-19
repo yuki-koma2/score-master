@@ -41,11 +41,8 @@ const OneTapComponent = () => {
 
                 // initialize the one-tap UI
 
-                //     process.env.NEXT_PUBLIC_SUPABASE_URL!,
-                //     process.env.NEXT_PUBLIC_SUPABASE_KEY!
-
                 console.log('Google Client ID: ',process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID)
-                console.log('Supabase URL: ',process.env.NEXT_PUBLIC_SUPABASE_KEY)
+                console.log('Supabase KEY: ',process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY)
                 console.log('Supabase URL: ',process.env.NEXT_PUBLIC_SUPABASE_URL)
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-expect-error
