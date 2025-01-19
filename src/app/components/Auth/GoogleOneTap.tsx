@@ -41,11 +41,18 @@ const OneTapComponent = () => {
 
                 // initialize the one-tap UI
 
+                //     process.env.NEXT_PUBLIC_SUPABASE_URL!,
+                //     process.env.NEXT_PUBLIC_SUPABASE_KEY!
+
+                console.log('Google Client ID: ',process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID)
+                console.log('Supabase URL: ',process.env.NEXT_PUBLIC_SUPABASE_KEY)
+                console.log('Supabase URL: ',process.env.NEXT_PUBLIC_SUPABASE_URL)
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-expect-error
                 google.accounts.id.initialize({
                     client_id: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID!,
                     callback: async (response: CredentialResponse) => {
+                        console.log('Google Response Credential:', response.credential);
                         try {
                             // send id token returned in response.credential to supabase
                             const {data, error} = await supabase.auth.signInWithIdToken({
@@ -54,7 +61,10 @@ const OneTapComponent = () => {
                                 nonce,
                             })
 
-                            if (error) throw error
+                            if (error) {
+                                console.error('Supabase signInWithIdToken error:', error);
+                                throw error;
+                            }
                             console.log('Session data: ', data)
                             console.log('Successfully logged in with Google One Tap')
 
