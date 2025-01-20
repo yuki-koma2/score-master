@@ -27,7 +27,6 @@ const OneTapComponent = () => {
             console.log('Initializing Google One Tap')
             window.addEventListener('load', async () => {
                 const [nonce, hashedNonce] = await generateNonce()
-                console.log('Nonce: ', nonce, hashedNonce)
 
                 // check if there's already an existing session before initializing the one-tap UI
                 const {data, error} = await supabase.auth.getSession()
@@ -40,10 +39,6 @@ const OneTapComponent = () => {
                 }
 
                 // initialize the one-tap UI
-
-                console.log('Google Client ID: ',process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID)
-                console.log('Supabase KEY: ',process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY)
-                console.log('Supabase URL: ',process.env.NEXT_PUBLIC_SUPABASE_URL)
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-expect-error
                 google.accounts.id.initialize({
