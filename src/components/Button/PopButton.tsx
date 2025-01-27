@@ -12,7 +12,27 @@ function PopButton() {
         const {data: {user}} = await supabase.auth.getUser()
         console.log(user)
 
-    }, [supabase.auth]);
+
+        const { data: users, error :dbError } = await supabase
+            .from('users')
+            .select('*')
+        console.log(users, dbError)
+
+        const { data : dbUser, error } = await supabase
+            .from('users')
+            .insert([
+                { some_column: 'someValue', other_column: 'otherValue' },
+            ])
+            .select()
+        console.log(dbUser, error)
+        if (error) {
+            console.error(error.message)
+            console.error(error.code)
+            console.error(error.hint)
+            console.error(error.details)
+        }
+
+    }, [supabase]);
     return (
         <button onClick={showUser}>
             <div
