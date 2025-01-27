@@ -1,6 +1,7 @@
 import Image from "next/image";
-import UniDirectional from "@/app/components/TextAnimation/UniDirectional";
-import GoogleOneTap from "@/app/components/Auth/GoogleOneTap";
+import UniDirectional from "@/components/TextAnimation/UniDirectional";
+import GoogleOneTap from "@/components/Auth/GoogleOneTap";
+import PopButton from "@/components/Button/PopButton";
 
 export default function Home() {
   return (
@@ -51,6 +52,7 @@ export default function Home() {
           </a>
         </div>
         <UniDirectional />
+        <PopButton />
         <GoogleOneTap />
       </main>
       <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
