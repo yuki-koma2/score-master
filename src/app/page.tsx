@@ -3,7 +3,6 @@ import UniDirectional from "@/components/TextAnimation/UniDirectional";
 import GoogleOneTap from "@/components/Auth/GoogleOneTap";
 import PopButton from "@/components/Button/PopButton";
 import MarqueeDemo from "@/components/Card/MarqueeDemo";
-import ReviewCard from "@/components/Card/ReviewCard";
 import UserCard from "@/components/Card/UserCard";
 
 export default function Home() {
