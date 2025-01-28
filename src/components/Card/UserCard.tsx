@@ -1,10 +1,37 @@
+"use client"
 import ReviewCard from "@/components/Card/ReviewCard";
 import { createClient } from "@/app/lib/supabase/client";
+import { useEffect, useState } from "react";
+import { User } from "@supabase/supabase-js";
 
-const UserCard = async () => {
+const UserCard = () => {
     const supabase = createClient()
-    const {data: {user}} = await supabase.auth.getUser();
-    console.log(user)
+    // const {data: {user}} = await supabase.auth.getUser();
+    // console.log("user card",user)
+
+    const [user, setUser] = useState<User | null>(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchUser = async () => {
+            setLoading(true); // ローディング開始
+            const {data, error} = await supabase.auth.getUser();
+            if (error || !data || !data.user) {
+                console.error("Error fetching user:", error || "No user found");
+                setUser(null);
+            } else {
+                setUser(data.user);
+            }
+            setLoading(false); // ローディング終了
+        };
+
+        fetchUser();
+    }, [supabase]);
+
+    if (loading) {
+        return <p>Loading...</p>;
+    }
+
 
     if (!user) {
         // ユーザーが取得できない場合のフォールバック
@@ -25,12 +52,12 @@ const UserCard = async () => {
             username={user.email || "No Email"} // ユーザーのメールアドレス
             body={"Welcome to your profile!"} // 固定のサンプル文
         />
-    // <ReviewCard
-    //     img={userMetaData.avatar_url || "https://via.placeholder.com/96"} // ユーザーの画像
-    //     name={userMetaData.full_name || "Anonymous"} // ユーザーのフルネーム
-    //     username={user.email || "No Email"} // ユーザーのメールアドレス
-    //     body={`Hello, ${userMetaData.name || "User"}! Welcome back!`} // メッセージ
-    // />
+        // <ReviewCard
+        //     img={userMetaData.avatar_url || "https://via.placeholder.com/96"} // ユーザーの画像
+        //     name={userMetaData.full_name || "Anonymous"} // ユーザーのフルネーム
+        //     username={user.email || "No Email"} // ユーザーのメールアドレス
+        //     body={`Hello, ${userMetaData.name || "User"}! Welcome back!`} // メッセージ
+        // />
     )
 };
 
