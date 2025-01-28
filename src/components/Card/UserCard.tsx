@@ -6,8 +6,6 @@ import { User } from "@supabase/supabase-js";
 
 const UserCard = () => {
     const supabase = createClient()
-    // const {data: {user}} = await supabase.auth.getUser();
-    // console.log("user card",user)
 
     const [user, setUser] = useState<User | null>(null);
     const [loading, setLoading] = useState(true);

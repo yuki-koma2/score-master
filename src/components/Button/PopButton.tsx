@@ -10,21 +10,29 @@ function PopButton() {
     const showUser = useCallback(async () => {
 
         const {data: {user}} = await supabase.auth.getUser()
-        console.log(user)
+        console.log("user",user)
 
 
         const { data: users, error :dbError } = await supabase
             .from('users')
             .select('*')
-        console.log(users, dbError)
+        console.log("db users",users, dbError)
 
-        const { data : dbUser, error } = await supabase
-            .from('users')
+        // const { data : dbUser, error } = await supabase
+        //     .from('users')
+        //     .insert([
+        //         { some_column: 'someValue', other_column: 'otherValue' },
+        //     ])
+        //     .select()
+
+        const { data: db, error } = await supabase
+            .from('countries')
             .insert([
-                { some_column: 'someValue', other_column: 'otherValue' },
+                { name: 'someValue'}
             ])
             .select()
-        console.log(dbUser, error)
+
+        console.log("db co",db, error)
         if (error) {
             console.error(error.message)
             console.error(error.code)
