@@ -36,7 +36,7 @@ scoremaster/
 │   │   ├── api/                    # APIルート
 │   │   │   ├── auth.js             # 認証関連API
 │   │   │   └── scores.js           # スコア関連API
-│   │   ├── index.js                # ホームページ
+│   │   ├── header.js                # ホームページ
 │   │   ├── dashboard.js            # ユーザーダッシュボードページ
 │   │   └── login.js                # ログインページ
 │   ├── lib/                        # アプリケーションのロジック
